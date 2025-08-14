@@ -1,0 +1,45 @@
+{
+  "UserStory": {
+    "ObjectID": 12345678911,
+    "FormattedID": "US1235",
+    "Name": "As a registered user, I want to log in to the application",
+    "Description": "As a registered user,\nI want to log in to the application using my valid username and password,\nSo that I can access my personalized dashboard and use the application’s features.\n\n**Acceptance Criteria:**\n1. The login page is accessible via supported browsers or mobile apps.\n2. The user enters a valid username/email and password combination.\n3. The system verifies the provided credentials.\n4. Upon successful login:\n   - The user is redirected to the dashboard or home page.\n   - A welcome message is displayed (e.g., “Welcome, John!”).\n   - A user session is created and maintained.\n5. The user remains logged in unless:\n   - They explicitly log out, or\n   - The session times out.\n6. Login activity is logged for audit purposes.\n7. An authentication token/session is created and stored securely.",
+    "ScheduleState": "Defined",
+    "State": "Defined",
+    "Owner": {
+      "_refObjectName": "Jane Doe",
+      "ObjectID": 11223344
+    },
+    "Project": {
+      "_refObjectName": "Authentication Project",
+      "ObjectID": 99887766
+    },
+    "Iteration": {
+      "_refObjectName": "Sprint 16",
+      "ObjectID": 55667789
+    },
+    "Release": {
+      "_refObjectName": "Q4 Release",
+      "ObjectID": 33445566
+    },
+    "PlanEstimate": 3,
+    "TaskEstimateTotal": 2.0,
+    "TaskRemainingTotal": 2.0,
+    "TaskActualTotal": 0.0,
+    "Blocked": false,
+    "CreationDate": "2025-08-11T10:00:00.000Z",
+    "LastUpdateDate": "2025-08-11T10:00:00.000Z",
+    "Tags": [
+      {
+        "_refObjectName": "Authentication",
+        "ObjectID": 789014
+      },
+      {
+        "_refObjectName": "Login",
+        "ObjectID": 789015
+      }
+    ],
+    "Notes": "**Assumptions:**\n- The user is already registered in the system.\n- The user knows their correct credentials.\n- Internet connection is stable.\n- Login only includes basic authentication (no MFA or social login).",
+    "_ref": "https://rally1.rallydev.com/slm/webservice/v2.0/hierarchicalrequirement/12345678911"
+  }
+}
