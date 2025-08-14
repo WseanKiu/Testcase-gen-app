@@ -1,0 +1,45 @@
+{
+  "UserStory": {
+    "ObjectID": 12345678911,
+    "FormattedID": "US1236",
+    "Name": "Search functionality with valid keyword",
+    "Description": "As a user,\nI want to search using a valid keyword,\nSo that I can view relevant results quickly and easily.\n\nAcceptance Criteria:\n1. The search bar is visible and functional.\n2. The user enters a valid keyword.\n3. Search executes without errors.\n4. Results relevant to the keyword are displayed with title, description, and link/image.\n5. Results remain until a new search is performed.\n6. User can interact with results (click/view details).\n7. Keyword may be stored in recent searches (if supported).",
+    "ScheduleState": "Defined",
+    "State": "Defined",
+    "Owner": {
+      "_refObjectName": "Jane Doe",
+      "ObjectID": 11223344
+    },
+    "Project": {
+      "_refObjectName": "Authentication Project",
+      "ObjectID": 99887766
+    },
+    "Iteration": {
+      "_refObjectName": "Sprint 16",
+      "ObjectID": 55667789
+    },
+    "Release": {
+      "_refObjectName": "Q4 Release",
+      "ObjectID": 33445566
+    },
+    "PlanEstimate": 3,
+    "TaskEstimateTotal": 2.0,
+    "TaskRemainingTotal": 2.0,
+    "TaskActualTotal": 0.0,
+    "Blocked": false,
+    "CreationDate": "2025-08-14T10:00:00.000Z",
+    "LastUpdateDate": "2025-08-14T10:00:00.000Z",
+    "Tags": [
+      {
+        "_refObjectName": "Search",
+        "ObjectID": 789014
+      },
+      {
+        "_refObjectName": "UI",
+        "ObjectID": 789015
+      }
+    ],
+    "Notes": "Search index is up to date and populated with relevant data.\nThe system is not experiencing latency or backend issues.\nInternet connection is active.\nSearch bar is visible and not disabled.",
+    "_ref": "https://rally1.rallydev.com/slm/webservice/v2.0/hierarchicalrequirement/12345678911"
+  }
+}
