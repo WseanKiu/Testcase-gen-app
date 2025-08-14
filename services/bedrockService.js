@@ -3,7 +3,7 @@ import {
   InvokeModelCommand,
 } from "@aws-sdk/client-bedrock-runtime";
 import dotenv from "dotenv";
-import * as XLSX from "xlsx";
+import ExcelJS from "exceljs";
 import { mkdirSync, existsSync } from "fs";
 import os from "os";
 import createPrompt from "./createPrompt.js";
@@ -46,33 +46,74 @@ export async function handleClaudeRequest(UserStoryNumber) {
   const content =
     typeof json.content === "string" ? JSON.parse(json.content) : json.content;
   const aoa_format_content = transformResponse(content);
+  console.log("aoa_format_content >>> ", aoa_format_content);
 
-  const worksheet = XLSX.utils.aoa_to_sheet(aoa_format_content);
-  const workbook = XLSX.utils.book_new();
-  XLSX.utils.book_append_sheet(workbook, worksheet, "TestCases");
+  // Create Excel using exceljs
+  const workbook = new ExcelJS.Workbook();
+  const worksheet = workbook.addWorksheet("TestCases");
 
+  // Add rows
+  aoa_format_content.forEach((row, rowIndex) => {
+    const addedRow = worksheet.addRow(row);
+
+    // Format header row
+    if (rowIndex === 0) {
+      addedRow.eachCell((cell) => {
+        cell.fill = {
+          type: "pattern",
+          pattern: "solid",
+          fgColor: { argb: "FFD700" }, // Dark yellow
+        };
+        cell.font = { bold: true };
+        cell.alignment = {
+          wrapText: true,
+          vertical: "middle",
+          horizontal: "center",
+        };
+      });
+    }
+  });
+
+  // Autofit column widths to content
+  worksheet.columns.forEach((column) => {
+    let maxLength = 10;
+
+    column.eachCell({ includeEmpty: true }, (cell, rowNumber) => {
+      if (!cell.value) return;
+
+      let cellText = cell.value.toString();
+
+      // Split multiline content and check each line's length
+      const lines = cellText.split("\n");
+      lines.forEach((line) => {
+        if (line.length > maxLength) {
+          maxLength = line.length;
+        }
+      });
+
+      // Enable text wrapping
+      cell.alignment = { wrapText: true, vertical: "top" };
+    });
+
+    // Set final column width based on longest line
+    column.width = maxLength + 2;
+  });
+
+  // Save Excel file
   const timestamp = new Date().toISOString().replace(/[:.]/g, "-");
-
-  // Get Desktop path dynamically - any user
   const desktopDir = `${os.homedir()}/Desktop`;
-  const folderName = "Generated TestCases"; // Your new folder
+  const folderName = "Generated TestCases";
   const folderPath = `${desktopDir}/${folderName}`;
 
-  // Check if folder exists
-  // if true - dont create
-  //if false  - create folder
   if (!existsSync(folderPath)) {
     mkdirSync(folderPath);
-    console.log(`Folder created: ${folderPath}`);
+    console.log(`📁 Folder created: ${folderPath}`);
   } else {
-    console.log(`Folder already exists: ${folderPath}`);
+    console.log(`📁 Folder already exists: ${folderPath}`);
   }
 
-  // Define the file path inside the new folder - filePath, filename
   const filePath = `${folderPath}/${UserStoryNumber}_test-cases-${timestamp}.xlsx`;
-
-  // Write the file
-  XLSX.writeFile(workbook, filePath);
+  await workbook.xlsx.writeFile(filePath);
 
   console.log(`✅ Excel file saved to: ${filePath}`);
   return content;
