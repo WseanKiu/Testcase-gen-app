@@ -2,9 +2,27 @@
 // Note: Avoid changing/updating this prompt constanst as this one is build to traget a specific ai repsonse to avoid vagueness/hallucinations
 export const Prompt_Statements = {
   Context: "You are a QA engineer testing a user story.",
-  Task: "Create a set of test cases base on the following user story description: ",
+  Task: `Given the following User Story (US) description, generate a comprehensive set of test cases. The test cases should cover:
+Positive and negative scenarios
+Complex edge cases and exception handling
+All applicable UI validations (e.g., required fields, input formats, character limits)
+Formatting rules (e.g., date, currency, phone number)
+Cross-platform considerations for both web and mobile applications
+Accessibility and responsiveness checks.
+
+Your response MUST include a JavaScript code block in this exact format:
+
+\`\`\`javascript
+const aoa_to_sheet = [
+  ["Test Case Id", "Test Case Name", "Pre-conditions", "Test Steps", "Expected Results", "Actual Results", "Status"],
+  ["TC001", "Sample test name", "1. Sample precondition", "1. Sample test step", "Sample expected result", "", ""],
+  // ... more test cases
+];
+\`\`\`
+
+This JavaScript array format is mandatory for proper processing.`,
   Constraint:
     "Test cases must cover the following acceptance citeria describe in the user story.",
   Example:
-    "Exaple Test Case with the format: Test Case Id: `sample id`, Test Case Name:`sample test name, Pre-conditions: `sample pre condition must come from the NOTES declare below, should be on lsit numeric order`, Test Steps: `sample steps should be in list numeric order, Expected Results: `sample expected results should be based on the Acceptance Criteria, Actuak Results: `leave this bank`, Status: `leave this blank`. Output also should be in the aoa_to_sheet format javascript json",
+    "Example Test Case format: Test Case Id: 'TC001', Test Case Name: 'Verify login functionality', Pre-conditions: '1. User has valid credentials, 2. Application is accessible', Test Steps: '1. Navigate to login page, 2. Enter valid credentials, 3. Click login button', Expected Results: 'User successfully logs in and is redirected to dashboard', Actual Results: 'leave blank', Status: 'leave blank'. IMPORTANT: Your response must contain a JavaScript code block with the exact format: ```javascript const aoa_to_sheet = [[\\\"Test Case Id\\\", \\\"Test Case Name\\\", \\\"Pre-conditions\\\", \\\"Test Steps\\\", \\\"Expected Results\\\", \\\"Actual Results\\\", \\\"Status\\\"], [\\\"TC001\\\", \\\"Sample test\\\", \\\"1. Precondition\\\", \\\"1. Test step\\\", \\\"Expected result\\\", \\\"\\\", \\\"\\\"]]; ``` This format is required for Excel generation.",
 };

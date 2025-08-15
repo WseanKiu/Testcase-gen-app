@@ -28,7 +28,7 @@ export async function handleClaudeRequest(UserStoryNumber) {
     accept: "application/json",
     body: JSON.stringify({
       anthropic_version: "bedrock-2023-05-31",
-      max_tokens: 1024,
+      max_tokens: 4000,
       temperature: 0.3,
       messages: [
         {
@@ -47,6 +47,11 @@ export async function handleClaudeRequest(UserStoryNumber) {
     typeof json.content === "string" ? JSON.parse(json.content) : json.content;
   const aoa_format_content = transformResponse(content);
   console.log("aoa_format_content >>> ", aoa_format_content);
+
+  // Validate the content before processing
+  if (!Array.isArray(aoa_format_content) || aoa_format_content.length === 0) {
+    throw new Error("❌ Failed to extract valid test case data from AI response. Please check the response format.");
+  }
 
   // Create Excel using exceljs
   const workbook = new ExcelJS.Workbook();
