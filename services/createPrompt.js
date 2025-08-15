@@ -9,9 +9,6 @@ async function createPrompt(userInput) {
 
     const prompt = `${Context}\n\n${Task}\n\n${description}\n\n${Constraint}\n\n${Example}${notes}`;
 
-    console.log("✅ Generated AI Prompt:\n");
-    console.log(prompt);
-
     return prompt;
   } catch (error) {
     console.error("Error:", error.message);

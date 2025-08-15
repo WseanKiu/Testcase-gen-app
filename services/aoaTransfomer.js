@@ -23,7 +23,7 @@ export function transformResponse(content) {
 
   if (!arrayText) {
     console.error("❌ No JavaScript code block with `aoa_to_sheet` array found.");
-    console.log("Raw response text:", rawText.substring(0, 500) + "...");
+    // Raw response details removed for cleaner output
     return [];
   }
 
@@ -65,7 +65,7 @@ export function transformResponse(content) {
     return aoa;
   } catch (err) {
     console.error("❌ Failed to parse array from code block:", err);
-    console.log("Array text that failed:", arrayText);
+    // Array parsing details removed for cleaner output
     return [];
   }
 }
