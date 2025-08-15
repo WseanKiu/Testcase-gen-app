@@ -1,17 +1,26 @@
-export const transformResponse = (response_raw) => {
-  const fullText = response_raw[0].text;
-  console.log(`fulltext >>>`, fullText);
-  const cleanText = fullText.replace(/```python|```/g, "").trim();
+export function transformResponse(content) {
+  const rawText = content[0]?.text || "";
 
-  // Extract the array part of the response for the excel consumption
-  const match = cleanText.match(/aoa_to_sheet\s*=\s*(\[[\s\S]*\])/);
+  // Extract the JS code block
+  const codeMatch = rawText.match(
+    /```javascript\s+const\s+aoa_to_sheet\s*=\s*(\[[\s\S]*?\]);?\s*```/
+  );
 
-  if (!match) {
-    console.error("Could not extract AOA array.");
-    process.exit(1);
+  if (!codeMatch) {
+    console.error(
+      "❌ No JavaScript code block with `aoa_to_sheet` array found."
+    );
+    return [];
   }
 
-  let aoaString = match[1];
-  const aoa = JSON.parse(aoaString);
-  return aoa;
-};
+  const arrayText = codeMatch[1];
+
+  try {
+    // Use `eval` inside a VM-safe context (or JSON.parse if the content is safe)
+    const aoa = eval(arrayText); // ❗ Safe here because we control Claude's prompt
+    return aoa;
+  } catch (err) {
+    console.error("❌ Failed to parse array from code block:", err);
+    return [];
+  }
+}
