@@ -4,6 +4,7 @@
   "description": "ExeQT - Test Case Generation Tool",
   "main": "index.js",
   "type": "module",
+  "license": "MIT",
   "scripts": {
     "exeqt": "node index.js"
   },
