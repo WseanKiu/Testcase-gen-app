@@ -9,7 +9,7 @@ A Node.js CLI tool that connects to **Amazon Bedrock Claude 3 Sonnet** using the
 - 📤 **Excel Output**: Saves structured test cases as `.xlsx` files  
 - 💻 **CLI Based**: Run via  
   ```bash
-  node index.js "your user story here"
+  yarn exeqt <story_id>
   ```
 - 🤖 **Powered by Claude 3 Sonnet**: Uses Amazon Bedrock SDK  
 
