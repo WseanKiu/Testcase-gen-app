@@ -1,7 +1,7 @@
 {
   "UserStory": {
     "ObjectID": 12345678911,
-    "FormattedID": "US1236",
+    "FormattedID": "US1239",
     "Name": "Search functionality with valid keyword",
     "Description": "As a user,\nI want to search using a valid keyword,\nSo that I can view relevant results quickly and easily.\n\nAcceptance Criteria:\n1. The search bar is visible and functional.\n2. The user enters a valid keyword.\n3. Search executes without errors.\n4. Results relevant to the keyword are displayed with title, description, and link/image.\n5. Results remain until a new search is performed.\n6. User can interact with results (click/view details).\n7. Keyword may be stored in recent searches (if supported).",
     "ScheduleState": "Defined",

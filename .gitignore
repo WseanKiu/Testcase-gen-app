@@ -1,3 +1,15 @@
 node_modules/
 .env
 test-cases/
+*.log
+
+# Generated files
+Generated TestCases/
+
+# IDE files
+.vscode/
+.idea/
+
+# OS files
+.DS_Store
+Thumbs.db
