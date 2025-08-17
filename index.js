@@ -1,3 +1,5 @@
+#!/usr/bin/env node
+
 import dotenv from "dotenv";
 import { handleClaudeRequest } from "./services/bedrockService.js";
 import { StatusTracker } from "./services/statusTracker.js";

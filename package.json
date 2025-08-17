@@ -1,17 +1,64 @@
 {
   "name": "exeqt",
   "version": "1.0.0",
-  "description": "ExeQT - Test Case Generation Tool",
+  "description": "ExeQT - AI-Powered Test Case Generation Tool using AWS Bedrock Claude 3 Sonnet",
   "main": "index.js",
   "type": "module",
-  "license": "MIT",
+  "license": "PROPRIETARY",
+  "private": true,
+  "authors": [
+    {
+      "name": "Winston Sean Quiñanola",
+      "role": "Lead Developer"
+    },
+    {
+      "name": "Kent Nolan Juliano",
+      "role": "Senior Analyst Engineer"
+    },
+    {
+      "name": "Jason Manforte",
+      "role": "Senior Quality Engineer"
+    },
+    {
+      "name": "Marlon Roxas",
+      "role": "Project Lead"
+    }
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/your-org/exeqt.git"
+  },
+  "keywords": [
+    "test-automation",
+    "ai",
+    "test-cases",
+    "aws-bedrock",
+    "claude",
+    "qa",
+    "testing",
+    "excel",
+    "cli"
+  ],
+  "engines": {
+    "node": ">=18.0.0",
+    "yarn": ">=1.22.0"
+  },
   "scripts": {
-    "exeqt": "node index.js"
+    "exeqt": "node index.js",
+    "start": "node index.js",
+    "test": "echo \"Tests not yet implemented\" && exit 0",
+    "validate": "node --check index.js",
+    "clean": "rimraf 'Generated TestCases' *.log"
   },
   "dependencies": {
     "@aws-sdk/client-bedrock-runtime": "^3.861.0",
     "dotenv": "^17.2.1",
-    "exceljs": "^4.4.0",
-    "xlsx": "^0.18.5"
+    "exceljs": "^4.4.0"
+  },
+  "devDependencies": {
+    "rimraf": "^6.0.1"
+  },
+  "bin": {
+    "exeqt": "./index.js"
   }
 }

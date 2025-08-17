@@ -2,7 +2,7 @@ import { promises as fs } from "fs";
 import path from "path";
 import { fileURLToPath } from "url";
 
-// Path to the JSON file - Temporary
+// Path to the stub JSON files for testing
 // To Do: This should be connected to the the Rally response data come integration
 // To Do: to get/fetch the response from Rally
 const __filename = fileURLToPath(import.meta.url);
@@ -10,7 +10,10 @@ const __dirname = path.dirname(__filename);
 
 // Async function to get description and notes
 async function getDescriptionAndNotes(userInput) {
-  const filePath = path.join(__dirname, `${userInput}_response.json`);
+  // Convert input to lowercase for consistent file naming
+  const normalizedInput = userInput.toLowerCase();
+  const filePath = path.join(__dirname, "..", "stubs", `${normalizedInput}_response.json`);
+  
   try {
     const data = await fs.readFile(filePath, "utf8");
     const json = JSON.parse(data);
@@ -21,7 +24,7 @@ async function getDescriptionAndNotes(userInput) {
 
     return { description, notes };
   } catch (error) {
-    throw new Error(`Failed to read or parse the file: ${error.message}`);
+    throw new Error(`Failed to read or parse the stub file for ${userInput}: ${error.message}`);
   }
 }
 
